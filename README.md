@@ -21,7 +21,7 @@ ccs --min-rq 0.9 -j 104 1.rawdata/m64083_230912_092706.subreads.bam 2.ccs0.9/m64
 ```
 
 ### Step 2 - Primer removal
-Removal of primers and identification of barcodes is performed using [*lima*](https://github.com/pacificbiosciences/barcoding), which can be installed with \`conda install lima` and offers a specialized `--isoseq` mode.
+Removal of primers and identification of barcodes is performed using [*lima*](https://github.com/pacificbiosciences/barcoding), which can be installed with `conda install lima` and offers a specialized `--isoseq` mode.
 Even in the case that your sample is not barcoded, primer removal is performed by *lima*.
 If there are more than two sequences in your `primer.fasta` file or better said more than one pair of 5' and 3' primers, please use *lima* with `--peek-guess` to remove spurious false positive signal.
 More information about how to name input primer(+barcode) sequences in this [FAQ](https://github.com/pacificbiosciences/barcoding#how-can-i-demultiplex-isoseq-data).
