@@ -13,15 +13,21 @@ Reg
     ├── 4.refine
     └── 5.clustering
 ```
-## Circular consensus sequences
+### Step 1 - Circular Consensus Sequence (CCS) calling
+Each sequencing run is processed by `ccs` to generate one representative circular consensus sequence (CCS) for each ZMW. Only ZMWs with at least one full pass (at least one subread with SMRT adapter on both ends) are used for the subsequent analysis.
 Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam files witha minimum quality of 0.9.
 ```bash
 ccs --min-rq 0.9 -j 104 1.rawdata/m64083_230912_092706.subreads.bam 2.ccs0.9/m64083_230912_092706.ccs.bam
 ```
 
-## 
+### Step 2 - Primer removal
+Removal of primers and identification of barcodes is performed using [*lima*](https://github.com/pacificbiosciences/barcoding), which can be installed with \`conda install lima` and offers a specialized `--isoseq` mode.
+Even in the case that your sample is not barcoded, primer removal is performed by *lima*.
+If there are more than two sequences in your `primer.fasta` file or better said more than one pair of 5' and 3' primers, please use *lima* with `--peek-guess` to remove spurious false positive signal.
+More information about how to name input primer(+barcode) sequences in this [FAQ](https://github.com/pacificbiosciences/barcoding#how-can-i-demultiplex-isoseq-data).
+
 ```bash
-lima -isoseq -peek-guess
+lima 2.ccs0.9/m64083_230912_092706.ccs.bam 3.primer_removal/ --isoseq --peek-guess
 ```
 
 The consensus transcripts were mapped to the Sweet Cherry cv. Regina genome assembly using minimap2-2.17 (r941) (`-ax splice -uf –secondary = no –C5 –O6,24 –B4`) (Li, 2018). SAM ﬁles were sorted and used to collapse redundant isoforms using Cupcake v9.1.13. Unmapped and poorly mapped isoforms were used as input to Cogent v6.0.04 to reconstruct the coding genome. The reconstructed contigs were used as a fake genome to process and collapse the unmapped and poorly mapped reads through the ToFU pipeline.[^1]
