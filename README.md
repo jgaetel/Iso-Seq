@@ -1,4 +1,4 @@
-# Iso-Seq assembly and functional annotation of full-length transcriptome of *Prunus avium* cv. Regina during dormancy
+# Iso-Seq assembly and functional annotation of full-length transcriptome of Sweet Cherry during dormancy
 
 Firstly, Iso-Seq reads were submitted to three successive steps: establishing of circular consensus sequences (CCS), demultiplexing according to the Leishmania species and reﬁnement by using the command line IsoSeq v3 (v3.4.0), implemented in the IsoSeq GUI-based analysis application (SMRT Link v6.0.0). In order to generate one representative CCS for each transcript the zero-mode waveguide (ZMW) of the CCS (v6.4.0) program was used with the - -min-rq 0.9, –draft-mode winpoa and –disable-heuristics parameters. Barcode demultiplexing and primer removal were performed using lima (version v1.10.0) with the –isoseq mode and –peek-guess parameter to remove spurious false positive signal. IsoSeq3 reﬁne (option –require-poly-A) was used to select those reads having a 3’-end adenine (A)-tract, after trimming out the poly(A) tails and concatemer identiﬁcation the FLNC transcripts were generated.
 
@@ -30,6 +30,15 @@ More information about how to name input primer(+barcode) sequences in this [FAQ
 lima 2.ccs0.9/m64083_230912_092706.ccs.bam 3.primer_removal/ --isoseq --peek-guess
 ```
 
-The consensus transcripts were mapped to the Sweet Cherry cv. Regina genome assembly using minimap2-2.17 (r941) (`-ax splice -uf –secondary = no –C5 –O6,24 –B4`) (Li, 2018). SAM ﬁles were sorted and used to collapse redundant isoforms using Cupcake v9.1.13. Unmapped and poorly mapped isoforms were used as input to Cogent v6.0.04 to reconstruct the coding genome. The reconstructed contigs were used as a fake genome to process and collapse the unmapped and poorly mapped reads through the ToFU pipeline.[^1]
+The consensus transcripts were mapped to the Sweet Cherry genome assembly using minimap2-2.17 (r941) (`-ax splice -uf –secondary = no –C5 –O6,24 –B4`) (Li, 2018). SAM ﬁles were sorted and used to collapse redundant isoforms using Cupcake v9.1.13. Unmapped and poorly mapped isoforms were used as input to Cogent v6.0.04 to reconstruct the coding genome. The reconstructed contigs were used as a fake genome to process and collapse the unmapped and poorly mapped reads through the ToFU pipeline.[^1]
+
+### Step 3 - Refine
+```bash
+isoseq refine 3.primer_removal/output.primer_5p--primer_3p.bam IsoSeqPrimers.fasta Regina_bud.flnc.bam --require-polya
+```
+
+```bash
+isoseq cluster2 4.refine/flnc.fofn 5.clustering/Regina_leaf_clustered.bam
+```
 
 [^1]: Ali, A., Thorgaard, G. H., & Salem, M. (2021). PacBio Iso-Seq Improves the Rainbow Trout Genome Annotation and Identifies Alternative Splicing Associated With Economically Important Phenotypes. Frontiers in Genetics, 12, 683408. https://doi.org/10.3389/FGENE.2021.683408/BIBTEX
