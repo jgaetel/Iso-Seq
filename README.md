@@ -2,9 +2,7 @@
 
 Firstly, Iso-Seq reads were submitted to three successive steps: establishing of circular consensus sequences (CCS), demultiplexing according to the Leishmania species and reﬁnement by using the command line IsoSeq v3 (v3.4.0), implemented in the IsoSeq GUI-based analysis application (SMRT Link v6.0.0). In order to generate one representative CCS for each transcript the zero-mode waveguide (ZMW) of the CCS (v6.4.0) program was used with the `--min-rq 0.9` parameter. Barcode demultiplexing and primer removal were performed using lima (version v1.10.0) with the `--isoseq` mode and `--peek-guess` parameter to remove spurious false positive signal. IsoSeq3 reﬁne (option `--require-polya`) was used to select those reads having a 3’-end adenine (A)-tract, after trimming out the poly(A) tails and concatemer identiﬁcation the FLNC transcripts were generated.
 
-
 <img width="1000px" src="https://github.com/PacificBiosciences/IsoSeq/blob/master/doc/img/isoseq-clustering-end-to-end.png"/>
-https://github.com/PacificBiosciences/IsoSeq/blob/master/doc/img/isoseq-clustering-end-to-end.png
 
 The working directory has the following structure:
 
@@ -17,6 +15,7 @@ Reg
     ├── 4.refine
     └── 5.clustering
 ```
+
 ### Step 1 - Circular Consensus Sequence (CCS) calling
 Each sequencing run is processed by `ccs` to generate one representative circular consensus sequence (CCS) for each ZMW. Only ZMWs with at least one full pass (at least one subread with SMRT adapter on both ends) are used for the subsequent analysis.
 Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam files witha minimum quality of 0.9.
