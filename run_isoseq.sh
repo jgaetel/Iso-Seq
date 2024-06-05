@@ -19,6 +19,7 @@ echo "### Step 0: Check output directories' existence & create them as needed"
 for BAM in 1.rawdata/*bam; do
         SUBREADS=$(basename $BAM)
         PREFIX=${SUBREADS%%.*}
+        echo "--------------------------------------------------"
         echo "### 1. Reading ${BAM} subreads"
         echo "### 2. Compute CCS"
         $CCS --min-rq 0.9 -j $THREADS $RAW_DIR/$SUBREADS $CCS_DIR/${PREFIX}.ccs.bam
@@ -33,4 +34,5 @@ cd $REF_DIR
 cd ..
 
 echo "### 5. Clustering"
-$ISOSEQ/isoseq cluster2 $REF_DIR/flnc.fofn $CLUS_DIR/Regina_leaf_clustered.bam
+$ISOSEQ/isoseq cluster2 -j $THREADS $REF_DIR/flnc.fofn $CLUS_DIR/Regina_leaf_clustered.bam
+echo "--------------------------------------------------"
