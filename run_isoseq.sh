@@ -5,6 +5,7 @@ CCS_DIR='2.ccs'
 PRIM_DIR='3.primer_removal'
 REF_DIR='4.refine'
 CLUS_DIR='5.clustering'
+CCS="/home/jgaete/.conda/envs/pacbiotools/bin/ccs"
 ISOSEQ='/home/jgaete/.conda/envs/isoseq/bin'
 THREADS=104
 PRIMERS='/home/compartida_sakuromics/Iso-seq/IsoSeqPrimers.fasta'
@@ -18,13 +19,13 @@ echo "### Step 0: Check output directories' existence & create them as needed"
 for BAM in 1.rawdata/*bam; do
         SUBREADS=$(basename $BAM)
         PREFIX=${SUBREADS%%.*}
-        echo "### 1. Reading subreads"
+        echo "### 1. Reading ${BAM} subreads"
         echo "### 2. Compute CCS"
-#       ccs -j $THREADS $RAW_DIR/$SUBREADS $CCS_DIR/${PREFIX}.ccs.bam
+        $CCS --min-rq 0.9 -j $THREADS $RAW_DIR/$SUBREADS $CCS_DIR/${PREFIX}.ccs.bam
         echo "### 3. Primers removal"
-#       $ISOSEQ/lima $CCS_DIR/${PREFIX}.ccs.bam $PRIMERS $PRIM_DIR/${PREFIX}.bam --isoseq
+        $ISOSEQ/lima -j $THREADS $CCS_DIR/${PREFIX}.ccs.bam $PRIMERS $PRIM_DIR/${PREFIX}.bam --isoseq
         echo "### 4. Concatemer removal"
-#       $ISOSEQ/isoseq refine $PRIM_DIR/${PREFIX}.primer_5p--primer_3p.bam $PRIMERS $REF_DIR/${PREFIX}.flnc.bam
+        $ISOSEQ/isoseq refine -j $THREADS $PRIM_DIR/${PREFIX}.primer_5p--primer_3p.bam $PRIMERS $REF_DIR/${PREFIX}.flnc.bam
 done;
 
 cd $REF_DIR
