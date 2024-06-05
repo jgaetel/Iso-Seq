@@ -27,7 +27,7 @@ If there are more than two sequences in your `primer.fasta` file or better said 
 More information about how to name input primer(+barcode) sequences in this [FAQ](https://github.com/pacificbiosciences/barcoding#how-can-i-demultiplex-isoseq-data).
 
 ```bash
-lima 2.ccs0.9/m64083_230912_092706.ccs.bam 3.primer_removal/ --isoseq --peek-guess
+lima -j 104 2.ccs0.9/m64083_230912_092706.ccs.bam 3.primer_removal/ --isoseq --peek-guess
 ```
 
 The consensus transcripts were mapped to the Sweet Cherry genome assembly using minimap2-2.17 (r941) (`-ax splice -uf –secondary = no –C5 –O6,24 –B4`) (Li, 2018). SAM ﬁles were sorted and used to collapse redundant isoforms using Cupcake v9.1.13. Unmapped and poorly mapped isoforms were used as input to Cogent v6.0.04 to reconstruct the coding genome. The reconstructed contigs were used as a fake genome to process and collapse the unmapped and poorly mapped reads through the ToFU pipeline.[^1]
