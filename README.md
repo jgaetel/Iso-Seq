@@ -15,7 +15,7 @@ Reg
     ├── 4.refine
     └── 5.clustering
 ```
-
+## Processing of raw PacBio Iso-Seq reads to FNLCs
 ### Step 1 - Circular Consensus Sequence (CCS) calling
 Each sequencing run is processed by `ccs` to generate one representative circular consensus sequence (CCS) for each ZMW. Only ZMWs with at least one full pass (at least one subread with SMRT adapter on both ends) are used for the subsequent analysis.
 Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam files witha minimum quality of 0.9.
@@ -45,6 +45,12 @@ isoseq refine -j 104 3.primer_removal/output.primer_5p--primer_3p.bam ../../IsoS
 Cluster FLNC reads and generate transcripts, much faster than "cluster" (FLNC to TRANSCRIPTS)
 ```bash
 isoseq cluster2 4.refine/flnc.fofn 5.clustering/Regina_leaf_clustered.bam
+```
+
+## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
+
+```bash
+minimap2 -ax splice:hq -uf final_markers.chr.fasta Regina_bud_leaf_isoforms.fa > Regina_isoforms_aln.sam
 ```
 
 [^1]: Ali, A., Thorgaard, G. H., & Salem, M. (2021). PacBio Iso-Seq Improves the Rainbow Trout Genome Annotation and Identifies Alternative Splicing Associated With Economically Important Phenotypes. Frontiers in Genetics, 12, 683408. https://doi.org/10.3389/FGENE.2021.683408/BIBTEX
