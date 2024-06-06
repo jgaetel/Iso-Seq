@@ -48,7 +48,7 @@ isoseq cluster2 4.refine/flnc.fofn 5.clustering/Regina_leaf_clustered.bam
 ```
 
 ## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
-
+Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
 ```bash
 minimap2 -ax splice:hq -uf final_markers.chr.fasta Regina_bud_leaf_isoforms.fa > Regina_isoforms_aln.sam
 ```
