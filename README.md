@@ -51,6 +51,10 @@ isoseq cluster2 4.refine/flnc.fofn 5.clustering/Regina_leaf_clustered.bam
 Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
 ```bash
 minimap2 -ax splice:hq -uf final_markers.chr.fasta Regina_bud_leaf_isoforms.fa > Regina_isoforms_aln.sam
+samtools sort Regina_isoforms_aln.sam -o Regina_isoforms_aln_sorted.sam
 ```
-
+### Step 2 - TAMA collapse
+```bash
+python tama_collapse -d merge_dup -x no_cap -m 0 -a 0 -z 0 -sj sj_priority -lde 30 -sjt 30
+```
 [^1]: Ali, A., Thorgaard, G. H., & Salem, M. (2021). PacBio Iso-Seq Improves the Rainbow Trout Genome Annotation and Identifies Alternative Splicing Associated With Economically Important Phenotypes. Frontiers in Genetics, 12, 683408. https://doi.org/10.3389/FGENE.2021.683408/BIBTEX
