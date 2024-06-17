@@ -46,6 +46,14 @@ Cluster FLNC reads and generate transcripts, much faster than "cluster" (FLNC to
 ```bash
 isoseq cluster2 4.refine/flnc.fofn 5.clustering/Regina_leaf_clustered.bam
 ```
+```bash
+pbmm2 index -j 104 --preset ISOSEQ final_markers.chr.fasta final_markers.chr.mmi
+pbmm2 align -j 104 --sort --preset ISOSEQ final_markers.chr.mmi ../5.clustering/Regina_bud_clustered.bam Regina_bud_aln.bam
+```
+```bash
+isoseq collapse -j 104 ../6.mapping/Regina_bud_aln.bam Regina_bud.gff
+```
+
 
 ## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
 Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
