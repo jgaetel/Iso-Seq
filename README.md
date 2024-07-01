@@ -65,4 +65,9 @@ samtools sort Regina_isoforms_aln.sam -o Regina_isoforms_aln_sorted.sam
 ```bash
 python tama_collapse -d merge_dup -x no_cap -m 0 -a 0 -z 0 -sj sj_priority -lde 30 -sjt 30
 ```
+
+```bash
+python tama_format_gff_to_bed12_cupcake.py ../Reg_Iso_bud/7.collapse/Regina_bud.gff Regina_bud.bed
+python tama_format_gff_to_bed12_cupcake.py ../Reg_Iso_leaf/7.collapse/Regina_leaf.gff Regina_leaf.bed
+```
 [^1]: Ali, A., Thorgaard, G. H., & Salem, M. (2021). PacBio Iso-Seq Improves the Rainbow Trout Genome Annotation and Identifies Alternative Splicing Associated With Economically Important Phenotypes. Frontiers in Genetics, 12, 683408. https://doi.org/10.3389/FGENE.2021.683408/BIBTEX
