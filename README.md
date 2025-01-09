@@ -80,7 +80,7 @@ Latest v4.0.0 `collapse` maximum junction difference parameters:
   --max-3p-diff                   INT    Maximum allowed 3' difference if on same exon. [100]
 ```
 
-<img width="1000px" "https://isoseq.how/img/collapse-max-junctions.png"/>
+<img width="1000px" src="https://isoseq.how/img/collapse-max-junctions.png"/>
 
 ## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
 Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
