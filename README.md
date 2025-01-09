@@ -74,7 +74,7 @@ For applications like single-cell Iso-Seq where there is a higher percentage of 
 Previous versions of `collapse` used stringent maximum differences (5bp) for both internal junctions and external junctions. As of v3.8.0, the maximum 5p and 3p differences have been increased and paramaters added to allow adjustments. Note: the maximum 5p difference only applies when `--do-not-collapse-extra-5exons` is set.
 
 Latest v4.0.0 `collapse` maximum junction difference parameters:
-```bash
+```
   --max-fuzzy-junction            INT    Ignore mismatches or indels shorter than or equal to N. [5]
   --max-5p-diff                   INT    Maximum allowed 5' difference if on same exon. [50]
   --max-3p-diff                   INT    Maximum allowed 3' difference if on same exon. [100]
