@@ -67,7 +67,7 @@ isoseq collapse -j 104 --do-not-collapse-extra-5exons ../6.mapping/Regina_bud_al
 
 For applications like single-cell Iso-Seq where there is a higher percentage of 5p truncated isoforms, it is useful to collapse isoforms that have a matching exon structure with the exception of extra 5p exons. Previous versions of collapse did not merge isoforms with extra 5p exons. As of v3.8.0, collapse will merge these isoforms by default. **To not allow merging isoforms with extra 5p exons**, use `--do-not-collapse-extra-5exons`. This option is used in the bulk Iso-Seq workflow.
 
-<img width="1000px" src="https://isoseq.how/img/collapse-5p-exons.png"/>
+<img width="1000px" src="https://isoseq.how/img/collapse-5p-exons.png" style="background-color: white; padding: 10px;"/>
 
 ## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
 Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
