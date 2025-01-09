@@ -46,10 +46,19 @@ Cluster FLNC reads and generate transcripts, much faster than "cluster" (FLNC to
 ```bash
 isoseq cluster2 4.refine/flnc.fofn 5.clustering/Regina_leaf_clustered.bam
 ```
+
+
+ ### Step 5 - Mapping
 ```bash
 pbmm2 index -j 104 --preset ISOSEQ final_markers.chr.fasta final_markers.chr.mmi
 pbmm2 align -j 104 --sort --preset ISOSEQ final_markers.chr.mmi ../5.clustering/Regina_bud_clustered.bam Regina_bud_aln.bam
 ```
+
+### Step 6 - Collapsing
+After transcript sequences are mapped to a reference genome, isoseq collapse can be used to collapse redundant transcripts (based on exonic structures) into unique isoforms. Output consists of unique isoforms in GFF format and secondary files containing information about the number of reads supporting each unique isoform. [Source](https://isoseq.how/classification/isoseq-collapse.html)
+
+- Collapse examples
+<img width="1000px" src="https://isoseq.how/img/collapse.png">
 ```bash
 isoseq collapse -j 104 ../6.mapping/Regina_bud_aln.bam Regina_bud.gff
 ```
