@@ -67,7 +67,20 @@ isoseq collapse -j 104 --do-not-collapse-extra-5exons ../6.mapping/Regina_bud_al
 
 For applications like single-cell Iso-Seq where there is a higher percentage of 5p truncated isoforms, it is useful to collapse isoforms that have a matching exon structure with the exception of extra 5p exons. Previous versions of collapse did not merge isoforms with extra 5p exons. As of v3.8.0, collapse will merge these isoforms by default. **To not allow merging isoforms with extra 5p exons**, use `--do-not-collapse-extra-5exons`. This option is used in the bulk Iso-Seq workflow.
 
-<img width="1000px" src="https://isoseq.how/img/collapse-5p-exons.png" style="background-color: white; padding: 10px;"/>
+<img width="1000px" src="https://isoseq.how/img/collapse-5p-exons.png"/>
+
+- **Flexible first/last exon differences**
+
+Previous versions of `collapse` used stringent maximum differences (5bp) for both internal junctions and external junctions. As of v3.8.0, the maximum 5p and 3p differences have been increased and paramaters added to allow adjustments. Note: the maximum 5p difference only applies when `--do-not-collapse-extra-5exons` is set.
+
+Latest v4.0.0 `collapse` maximum junction difference parameters:
+```bash
+  --max-fuzzy-junction            INT    Ignore mismatches or indels shorter than or equal to N. [5]
+  --max-5p-diff                   INT    Maximum allowed 5' difference if on same exon. [50]
+  --max-3p-diff                   INT    Maximum allowed 3' difference if on same exon. [100]
+```
+
+<img width="1000px" "https://isoseq.how/img/collapse-max-junctions.png"/>
 
 ## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
 Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
