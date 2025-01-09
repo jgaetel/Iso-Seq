@@ -58,7 +58,7 @@ pbmm2 align -j 104 --sort --preset ISOSEQ final_markers.chr.mmi ../5.clustering/
 After transcript sequences are mapped to a reference genome, isoseq collapse can be used to collapse redundant transcripts (based on exonic structures) into unique isoforms. Output consists of unique isoforms in GFF format and secondary files containing information about the number of reads supporting each unique isoform. [Source](https://isoseq.how/classification/isoseq-collapse.html)
 
 - **Collapse examples**
-<img width="1000px" src="https://isoseq.how/img/collapse.png">
+<img width="1000px" src="https://isoseq.how/img/collapse.png"/>
 
 ```bash
 isoseq collapse -j 104 --do-not-collapse-extra-5exons ../6.mapping/Regina_bud_aln.bam Regina_bud.gff
