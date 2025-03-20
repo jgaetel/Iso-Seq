@@ -22,6 +22,7 @@ Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam f
 ```bash
 ccs --min-rq 0.9 -j 104 1.rawdata/m64083_230912_092706.subreads.bam 2.ccs0.9/m64083_230912_092706.ccs.bam
 ```
+<img width="1000px" src="https://ccs.how/img/ccs-workflow.png"/>
 
 ### Step 2 - Primer removal
 Removal of primers and identification of barcodes is performed using [*lima*](https://github.com/pacificbiosciences/barcoding), which can be installed with `conda install lima` and offers a specialized `--isoseq` mode.
