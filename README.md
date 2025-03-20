@@ -18,7 +18,8 @@ Reg
 ## Processing of raw PacBio Iso-Seq reads to FNLCs
 ### Step 1 - Circular Consensus Sequence (CCS) calling
 Each sequencing run is processed by `ccs` to generate one representative circular consensus sequence (CCS) for each ZMW. Only ZMWs with at least one full pass (at least one subread with SMRT adapter on both ends) are used for the subsequent analysis.
-Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam files witha minimum quality of 0.99 (default). (See: [How does it works...](https://ccs.how/how-does-ccs-work.html))
+Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam files witha minimum quality of 0.99 (default).
+(See: [How does CCS work](https://ccs.how/how-does-ccs-work.html))
 ```bash
 ccs -j 104 1.rawdata/m64083_230912_092706.subreads.bam 2.ccs0.9/m64083_230912_092706.ccs.bam
 ```
