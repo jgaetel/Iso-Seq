@@ -21,7 +21,7 @@ Each sequencing run is processed by `ccs` to generate one representative circula
 Polished CCS subreads were generated, using CCS v.6.4.0, from the subreads bam files witha minimum quality of 0.99 (default).
 (See: [How does CCS work](https://ccs.how/how-does-ccs-work.html))
 ```bash
-ccs -j 104 1.rawdata/m64083_230912_092706.subreads.bam 2.ccs0.9/m64083_230912_092706.ccs.bam
+ccs -j <threads> 1.rawdata/m64083_230912_092706.subreads.bam 2.ccs/m64083_230912_092706.ccs.bam
 ```
 <img width="500px" src="https://ccs.how/img/ccs-workflow.png"/>
 
@@ -32,10 +32,10 @@ If there are more than two sequences in your `primer.fasta` file or better said 
 More information about how to name input primer(+barcode) sequences in this [FAQ](https://github.com/pacificbiosciences/barcoding#how-can-i-demultiplex-isoseq-data).
 
 ```bash
-lima -j 104 2.ccs0.9/m64083_230912_092706.ccs.bam ../../IsoSeqPrimers.fasta 3.primer_removal/output --isoseq
+lima -j <threads> 2.ccs/m64083_230912_092706.ccs.bam ../../IsoSeqPrimers.fasta 3.primer_removal/output --isoseq
 ```
 
-The consensus transcripts were mapped to the Sweet Cherry genome assembly using minimap2-2.17 (r941) (`-ax splice -uf –secondary = no –C5 –O6,24 –B4`) (Li, 2018). SAM ﬁles were sorted and used to collapse redundant isoforms using Cupcake v9.1.13. Unmapped and poorly mapped isoforms were used as input to Cogent v6.0.04 to reconstruct the coding genome. The reconstructed contigs were used as a fake genome to process and collapse the unmapped and poorly mapped reads through the ToFU pipeline.[^1]
+
 
 ### Step 3 - Refine
 Remove polyA and concatemers from FL reads and generate FLNC transcripts (FL to FLNC)
@@ -85,6 +85,8 @@ Latest v4.0.0 `collapse` maximum junction difference parameters:
 <img width="1000px" src="https://isoseq.how/img/collapse-max-junctions.png"/>
 
 ## Mapping Iso-Seq transcripts to Sweet Cherry genome assembly
+~~The consensus transcripts were mapped to the Sweet Cherry genome assembly using minimap2-2.17 (r941) (`-ax splice -uf –secondary = no –C5 –O6,24 –B4`) (Li, 2018). SAM ﬁles were sorted and used to collapse redundant isoforms using Cupcake v9.1.13. Unmapped and poorly mapped isoforms were used as input to Cogent v6.0.04 to reconstruct the coding genome. The reconstructed contigs were used as a fake genome to process and collapse the unmapped and poorly mapped reads through the ToFU pipeline.[^1]~~
+
 Using [TAMA](https://github.com/GenomeRIK/tama/wiki) to collapse and mere reads/transcripts and apply novel methods to define splice junctions (SJs) and transcript start and end sites
 ```bash
 minimap2 -ax splice:hq -uf final_markers.chr.fasta Regina_bud_leaf_isoforms.fa > Regina_isoforms_aln.sam
