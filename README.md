@@ -13,7 +13,9 @@ Reg
     ├── 2.ccs
     ├── 3.primer_removal
     ├── 4.refine
-    └── 5.clustering
+    ├── 5.clustering
+    ├── 6.mapping
+    └── 7.collapse
 ```
 ## Processing of raw PacBio Iso-Seq reads to FNLCs
 ### Step 1 - Circular Consensus Sequence (CCS) calling
